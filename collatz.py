@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+from operator import attrgetter 
 
 class Collatz:
    """docstring for Collatz"""
@@ -33,3 +34,7 @@ class Collatz:
          return self.__collatz(arg // 2, history + [arg])
       else:
          return self.__collatz(arg * 3 + 1, history + [arg])
+
+   def __repr__(self):
+      return (number, collatz_length, collatz_list)
+
