@@ -36,5 +36,5 @@ class Collatz:
          return self.__collatz(arg * 3 + 1, history + [arg])
 
    def __repr__(self):
-      return (number, collatz_length, collatz_list)
+      return (self.number, self.collatz_length, self.collatz_list)
 
