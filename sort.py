@@ -2,7 +2,6 @@
 
 from collatz import Collatz
 from operator import attrgetter
-# from tail_recursion import tail_recursive, recurse
 
 class Sort(Collatz):
    """docstring for Sort"""
@@ -35,3 +34,6 @@ class Sort(Collatz):
    def sort(self):
       self.sorted_list = sorted(self.sorted_list, key = attrgetter('number'))
       self.sorted_list = sorted(self.sorted_list, key = attrgetter('collatz_length'))
+
+   def __repr__(self):
+      return repr(vars(self))
