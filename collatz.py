@@ -6,13 +6,17 @@ class Collatz:
 
    number = 0
    collatz_length = 0
+   collatz_max = 0
    collatz_list = []
+
 
    def __init__(self, arg):
       if type(arg) == int and arg > 0:
          self.number = arg
          self.collatz(arg)
-         self.collatz_length = len(self.collatz_list)         
+         self.collatz_length = len(self.collatz_list)
+         if self.collatz_list != []:
+            self.collatz_max = max(self.collatz_list)
       elif type(arg) == type(self):
          print('arg is ', type(self))
          self.collatz_list = arg.collatz_list

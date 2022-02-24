@@ -12,7 +12,7 @@ class Sort(Collatz):
       if type(arg) == list:
          self.sorted_list = arg
          self.prepare_collatz_list()
-         self.sort()
+         self.sort_len()
       if type(arg) == type(self):
          print('arg is ', type(self))
          self.number = arg.number
@@ -31,9 +31,13 @@ class Sort(Collatz):
    def get_me(self):
       return [elem.get_me() for elem in self.sorted_list]
 
-   def sort(self):
+   def sort_len(self):
       self.sorted_list = sorted(self.sorted_list, key = attrgetter('number'))
       self.sorted_list = sorted(self.sorted_list, key = attrgetter('collatz_length'))
+
+   def sort_max(self):
+      self.sorted_list = sorted(self.sorted_list, key = attrgetter('number'))
+      self.sorted_list = sorted(self.sorted_list, key = attrgetter('collatz_max'))
 
    def __repr__(self):
       return repr(vars(self))
