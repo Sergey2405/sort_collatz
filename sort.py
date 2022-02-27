@@ -39,5 +39,14 @@ class Sort(Collatz):
       self.sorted_list = sorted(self.sorted_list, key = attrgetter('number'))
       self.sorted_list = sorted(self.sorted_list, key = attrgetter('collatz_max'))
 
+   def filter_max(self):
+      filtered_max = []
+      self.sort_max()
+      token_max_list = list(dict.fromkeys([elem.collatz_max for elem in self.sorted_list]))
+      for token_max in token_max_list:
+         token_filtered_max_list = [elem for elem in self.sorted_list if elem.collatz_max == token_max]
+         filtered_max =  filtered_max + [token_filtered_max_list[-1]]
+      return filtered_max
+
    def __repr__(self):
       return repr(vars(self))
