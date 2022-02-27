@@ -9,6 +9,20 @@ class Collatz:
    collatz_max = 0
    collatz_list = []
 
+   def collatz(self, arg):
+      self.collatz_list = self.__collatz(arg, [])
+
+   def get_me(self):
+      return (self.number, self.collatz_length, self.collatz_list)
+
+
+   def __collatz(self, arg, history):
+      if arg == 1:
+         return history
+      elif arg % 2 == 0:
+         return self.__collatz(arg // 2, history + [arg])
+      else:
+         return self.__collatz(arg * 3 + 1, history + [arg])
 
    def __init__(self, arg):
       if type(arg) == int and arg > 0:
@@ -24,20 +38,6 @@ class Collatz:
       else:
          self.number = arg
 
-   def collatz(self, arg):
-      self.collatz_list = self.__collatz(arg, [])
-
-   def get_me(self):
-      return (self.number, self.collatz_length, self.collatz_list)
-
-
-   def __collatz(self, arg, history):
-      if arg == 1:
-         return history
-      elif arg % 2 == 0:
-         return self.__collatz(arg // 2, history + [arg])
-      else:
-         return self.__collatz(arg * 3 + 1, history + [arg])
 
    def __repr__(self):
       return repr(vars(self))

@@ -8,15 +8,6 @@ class Sort(Collatz):
 
    sorted_list = []
 
-   def __init__(self, arg):
-      if type(arg) == list:
-         self.sorted_list = arg
-         self.prepare_collatz_list()
-      if type(arg) == type(self):
-         print('arg is ', type(self))
-         self.number = arg.number
-         self.collatz_list = arg.collatz_list
-
    def prepare_collatz_list(self):
       while type(self.sorted_list[0]) != Collatz:
          current_number = self.sorted_list[0]
@@ -41,14 +32,24 @@ class Sort(Collatz):
       return self
 
    def filter_max(self):
-      filtered_max = []
+      filtered_max_list = []
       self.sort_max()
+      new_self = self
       token_max_list = list(dict.fromkeys([elem.collatz_max for elem in self.sorted_list]))
       for token_max in token_max_list:
-         token_filtered_max_list = [elem for elem in self.sorted_list if elem.collatz_max == token_max]
-         filtered_max =  filtered_max + [token_filtered_max_list[-1]]
-      new_self = Collatz(filtered_max)
+         token_filtered_max_list = [elem for elem in new_self.sorted_list if elem.collatz_max == token_max]
+         filtered_max_list =  filtered_max_list + [token_filtered_max_list[-1]]
+      new_self.sorted_list = filtered_max_list
       return new_self
+
+   def __init__(self, arg):
+      if type(arg) == list:
+         self.sorted_list = arg
+         self.prepare_collatz_list()
+      if type(arg) == type(self):
+         print('arg is ', type(self))
+         self.number = arg.number
+         self.collatz_list = arg.collatz_list
 
    def __repr__(self):
       return repr(vars(self))
